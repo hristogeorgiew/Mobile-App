@@ -3,7 +3,7 @@ import React from 'react';
 import { Button, TextInput } from 'react-native-paper';
 import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
-const LoginScreen = () => {
+const LoginScreen = (props) => {
   return (
     <>
       <KeyboardAvoidingView behavior="padding">
@@ -34,7 +34,12 @@ const LoginScreen = () => {
            Влез
         </Button>
         <TouchableOpacity >
-          <Text style={styles.input}>Нямате регистрация ?</Text>
+          <Text 
+            style={styles.input}
+            onPress={() => props.navigation.navigate("Регистрация")}
+          >
+            Нямате регистрация ?
+          </Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     </>
@@ -60,7 +65,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 35,
     marginLeft: 18,
-    marginTop: 50,
+    marginTop: 5,
     color: "gray"
   },
   newAcount: {

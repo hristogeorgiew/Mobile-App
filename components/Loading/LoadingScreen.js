@@ -1,21 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Button, TextInput } from 'react-native-paper';
 import { ActivityIndicator,  StyleSheet, View } from 'react-native';
 
 const LoadingScreen = () => {
   return (
-    <View>
-        <ActivityIndicator style={styles.loading}/>
+    <View style={styles.loading}>
+        <ActivityIndicator size="large" color="blue" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  loading: {
-    size: "large",
-    color: "blue"
-  },
-});
+    loading:{
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center"
+    }
+  })
 
 export default LoadingScreen;
