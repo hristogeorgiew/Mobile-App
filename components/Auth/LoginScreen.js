@@ -23,6 +23,7 @@ const LoginScreen = (props) => {
         <TextInput
           style={styles.input}
           label="Password"
+          secureTextEntry={true}
           mode="outlined"
           theme={{ colors: { primary: "blue" } }}
         />
