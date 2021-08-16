@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
 
 
 import SignUpScreen from './components/Auth/SignUpScreen';
@@ -16,7 +17,12 @@ export default function App() {
   return (
     
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          //маха стрелка назад при
+          screenOptions={{
+            headerShown: false
+          }}
+        >
           <Stack.Screen name="Регистрация" component={SignUpScreen} />
           <Stack.Screen name="login" component={LoginScreen} />
         </Stack.Navigator>

@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 35,
     marginLeft: 18,
-    marginTop: 5,
+    marginTop: 50,
     color: "gray"
   },
   newAcount: {
