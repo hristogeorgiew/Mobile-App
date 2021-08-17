@@ -1,9 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React,{useState} from 'react';
 import { Button, TextInput } from 'react-native-paper';
 import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 const SignUpScreen = (props) => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const sendCred = () => {
+    fetch("http://192.168.2.110:5000/signup", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body:JSON.stringify({
+        "email": email,
+        "password": password
+      })
+    })
+    .then(res => res.json())
+    .then(data=> {
+      console.log(data);
+    })
+  }
+
   return (
     <>
       <KeyboardAvoidingView behavior="padding">
@@ -29,21 +51,25 @@ const SignUpScreen = (props) => {
         <TextInput
           style={styles.input}
           label="Email"
+          value={email}
           mode="outlined"
           theme={{ colors: { primary: "blue" } }}
+          onChangeText={(text) => setEmail(text)}
         />
         <TextInput
           style={styles.input}
+          value={password}
           label="Password"
           secureTextEntry={true}
           mode="outlined"
           theme={{ colors: { primary: "blue" } }}
+          onChangeText={(text) => setPassword(text)}
         />
 
         <Button
           style={styles.input}
           mode="contained"
-          onPress={() => console.log('Pressed')}>
+          onPress={() => sendCred()}>
           Регистрация
         </Button>
         <TouchableOpacity >
