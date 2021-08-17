@@ -2,13 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
 import { Button, TextInput } from 'react-native-paper';
 import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const SignUpScreen = (props) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const sendCred = () => {
+  const sendCred = async () => {
     fetch("http://192.168.2.110:5000/signup", {
       method: "POST",
       headers: {
@@ -21,9 +22,15 @@ const SignUpScreen = (props) => {
       })
     })
     .then(res => res.json())
-    .then(data=> {
-      console.log(data);
-    })
+    .then(async (data)=>{
+      try {
+        //запазвам token в storage
+        await AsyncStorage.setItem('token',data.token)
+        
+      } catch (e) {
+        console.log("error hai",e)
+      }
+})
   }
 
   return (
